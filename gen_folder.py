@@ -30,6 +30,7 @@ def create_dsa_template():
     prob_name_raw = input("Enter Problem Name: ").strip()
     prob_name_slug = prob_name_raw.replace(" ", "-")
     difficulty_input = input("Enter Difficulty (easy/medium/hard): ")
+    topics = input("Enter Topics (e.g., Array, Hash Table): ").strip()
     
     # Get Emoji formatting
     diff_display, diff_simple = get_difficulty_info(difficulty_input)
@@ -43,9 +44,29 @@ def create_dsa_template():
         print(f"⚠️ Folder {folder_path} already exists!")
         return
 
-    # 3. Create Files
+    # 3. Define the detailed problem.md content
+    problem_md_content = f"""# Problem {prob_num}: {prob_name_raw}
+
+[LeetCode Link](https://leetcode.com/problems/{prob_name_slug.lower()}/)
+
+⚒️ **Difficulty:** {diff_display}
+🎓 **Topics:** {topics}
+
+### Problem Statement
+
+### Example 1:
+**Input:**
+**Output:**
+**Explanation:**
+
+### Constraints:
+
+---------------
+"""
+
+    # 4. Create Files
     files = {
-        "problem.md": f"# {diff_display} - Problem {prob_num}: {prob_name_raw}\n\n[LeetCode Link](https://leetcode.com/problems/{prob_name_slug.lower()}/)",
+        "problem.md": problem_md_content,
         "approach.md": f"# Approach for {prob_name_raw}\n\n## 💡 Intuition\n\n## ⚙️ Algorithm\n\n## 📊 Complexity\n- Time: $O()$\n- Space: $O()$",
         "solution.py": "class Solution:\n    def solve(self, nums):\n        pass",
         "testsolution.py": f"import unittest\nfrom solution import Solution\n\nclass TestSolution(unittest.TestCase):\n    def test_case_1(self):\n        sol = Solution()\n        # self.assertEqual(sol.solve(), expected)\n\nif __name__ == '__main__':\n    unittest.main()"
@@ -55,7 +76,7 @@ def create_dsa_template():
         with open(os.path.join(folder_path, filename), "w", encoding="utf-8") as f:
             f.write(content)
     
-    # 4. Auto-Update README
+    # 5. Auto-Update README
     update_readme(prob_num, prob_name_raw, diff_display, folder_path)
 
 if __name__ == "__main__":

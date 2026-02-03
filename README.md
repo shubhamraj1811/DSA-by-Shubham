@@ -1,20 +1,3 @@
-<!-- # 🚀 DSA Portfolio | Shubham Raj
-
-This repository contains my solutions to various Data Structures and Algorithms problems, primarily from **LeetCode**. 
-
-[![LeetCode](https://img.shields.io/badge/-LeetCode-000?&logo=leetcode&style=for-the-badge)](https://leetcode.com/shubhamraj1811) 
-[![Profile views](https://komarev.com/ghpvc/?username=shubhamraj1811-DSA&label=Repo%20views&color=5689f5&style=for-the-badge)](https://github.com/shubhamraj1811)
-
-## 📊 Progress
-- **Total Problems Solved:** 100+
-- **Primary Language:** Python 🐍
-- **Topics:** Array, Linked List, Trees, Dynamic Programming, Graphs.
-
-## 📁 Problem Index
-| # | Problem Name | Difficulty | Solution |
-|---|--------------|------------|----------| -->
-
-
 # 🚀 DSA Portfolio | Shubham Raj
 > **A collection of 100+ LeetCode solutions and algorithmic patterns.**
 
@@ -35,7 +18,7 @@ I am a Computer Science student at **GEC Lakhisarai** (BEU). I specialize in **P
 ---
 
 ### 📈 Progress Tracker
-- **Problems Solved:** 100+
+- **Problems Solved:** 1
 - **Primary Language:** Python 🐍
 
 ---
@@ -43,3 +26,4 @@ I am a Computer Science student at **GEC Lakhisarai** (BEU). I specialize in **P
 ### 📁 Problem Index
 | # | Problem Name | Difficulty | Solution |
 |---|--------------|------------|----------|
+| 0001 | [Two Sum](./LeetCode/0001-Two-Sum/solution.py) | 🟢 Easy | [View Approach](./LeetCode/0001-Two-Sum/approach.md) |

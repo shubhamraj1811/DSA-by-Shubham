@@ -18,7 +18,7 @@ I am a Computer Science student at **GEC Lakhisarai** (BEU). I specialize in **P
 ---
 
 ### 📈 Progress Tracker
-- **Problems Solved:** 1
+- **Problems Solved:** 2
 - **Primary Language:** Python 🐍
 
 ---
@@ -27,3 +27,4 @@ I am a Computer Science student at **GEC Lakhisarai** (BEU). I specialize in **P
 | # | Problem Name | Difficulty | Solution |
 |---|--------------|------------|----------|
 | 0001 | [Two Sum](./LeetCode/0001-Two-Sum/solution.py) | 🟢 Easy | [View Approach](./LeetCode/0001-Two-Sum/approach.md) |
+| 0009 | [Palindrome Number](./LeetCode/0009-Palindrome-Number/solution.py) | 🟢 Easy | [View Approach](./LeetCode/0009-Palindrome-Number/approach.md) |

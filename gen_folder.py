@@ -3,81 +3,144 @@ import os
 def get_difficulty_info(difficulty_raw):
     """Returns the emoji and formatted string based on input."""
     diff = difficulty_raw.strip().lower()
-    if diff == "easy":
-        return "🟢 Easy", "Easy"
-    elif diff == "medium":
-        return "🟠 Medium", "Medium"
-    elif diff == "hard":
-        return "🔴 Hard", "Hard"
-    else:
-        return "⚪ Unknown", "Unknown"
+    mapping = {
+        "easy": ("🟢 Easy", "Easy"),
+        "medium": ("🟠 Medium", "Medium"),
+        "hard": ("🔴 Hard", "Hard")
+    }
+    return mapping.get(diff, ("⚪ Unknown", "Unknown"))
 
-def update_readme(prob_num, prob_name, diff_display, folder_path):
+def update_readme(prob_num, prob_name, diff_display, topics, folder_path):
+    """Updates the root README.md with an enhanced table layout."""
     readme_path = "README.md"
-    # Format: | # | Problem Name | Difficulty | Solution |
-    new_row = f"| {prob_num} | [{prob_name.replace('-', ' ')}](./{folder_path}/solution.py) | {diff_display} | [View Approach](./{folder_path}/approach.md) |\n"
     
-    if os.path.exists(readme_path):
-        with open(readme_path, "a", encoding="utf-8") as f:
-            f.write(new_row)
-        print(f"✅ Updated README.md with {diff_display} Problem {prob_num}")
-    else:
-        print("❌ README.md not found.")
+    # Enhanced Table Row: | # | Problem Name | Difficulty | Topics | Solution |
+    new_row = f"| {prob_num} | [{prob_name}](./{folder_path}/problem.md) | {diff_display} | `{topics}` | [🐍 Solution](./{folder_path}/solution.py) |\n"
+    
+    # Initialize README if it doesn't exist
+    if not os.path.exists(readme_path):
+        with open(readme_path, "w", encoding="utf-8") as f:
+            f.write("# LeetCode Solutions Portfolio\n\n")
+            f.write("| # | Problem Name | Difficulty | Topics | Solution |\n")
+            f.write("|---|---|---|---|---|\n")
+
+    with open(readme_path, "a", encoding="utf-8") as f:
+        f.write(new_row)
+    print(f"✅ README.md updated successfully.")
 
 def create_dsa_template():
-    # 1. Inputs
-    prob_num = input("Enter Problem Number (e.g., 1): ").strip().zfill(4)
-    prob_name_raw = input("Enter Problem Name: ").strip()
-    prob_name_slug = prob_name_raw.replace(" ", "-")
-    difficulty_input = input("Enter Difficulty (easy/medium/hard): ")
-    topics = input("Enter Topics (e.g., Array, Hash Table): ").strip()
+    # --- 1. User Inputs ---
+    prob_num = input("🔢 Problem Number: ").strip().zfill(4)
+    prob_name_raw = input("📝 Problem Name: ").strip()
+    category = input("📁 Category (e.g., Arrays, DP, Graphs): ").strip().title()
+    difficulty_input = input("⚖️ Difficulty (easy/medium/hard): ")
+    topics = input("🏷️ Specific Topics (comma separated): ").strip()
     
-    # Get Emoji formatting
-    diff_display, diff_simple = get_difficulty_info(difficulty_input)
+    # Formatting slugs and paths
+    prob_name_slug = prob_name_raw.lower().replace(" ", "-")
+    diff_display, _ = get_difficulty_info(difficulty_input)
     
-    folder_path = f"LeetCode/{prob_num}-{prob_name_slug}"
+    # New Path Structure: Category/0000-name
+    folder_path = f"{category}/{prob_num}-{prob_name_slug}"
     
-    # 2. Create Folder
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-    else:
-        print(f"⚠️ Folder {folder_path} already exists!")
+    # --- 2. Create Directory Structure ---
+    if os.path.exists(folder_path):
+        print(f"⚠️ Folder '{folder_path}' already exists! Skipping...")
         return
+    
+    os.makedirs(folder_path)
 
-    # 3. Define the detailed problem.md content
+    # --- 3. Define File Templates ---
+    
+    # Approach.md with Method 1/2 and Key Takeaways
+    approach_content = f"""# Approach: {prob_name_raw}
+
+## 💡 Intuition
+### Method 1: Brute Force / Initial Idea
+### Method 2: Optimized Approach
+## ⚙️ Algorithm
+## 📊 Complexity
+- **Time Complexity:** $O()$
+- **Space Complexity:** $O()$
+
+---
+
+## 🧠 Key Takeaways
+- What did I learn from this problem?
+- Why did I choose this specific data structure?
+"""
+
+    # Problem.md with clean separators
     problem_md_content = f"""# Problem {prob_num}: {prob_name_raw}
 
-[LeetCode Link](https://leetcode.com/problems/{prob_name_slug.lower()}/)
+[🔗 LeetCode Link](https://leetcode.com/problems/{prob_name_slug}/)
 
 ⚒️ **Difficulty:** {diff_display}
 🎓 **Topics:** {topics}
 
-### Problem Statement
+---
 
-### Example 1:
+### 📝 Problem Statement
+---
+
+### 📥 Example 1
 **Input:**
 **Output:**
 **Explanation:**
 
-### Constraints:
+---
 
----------------
+### ⚠️ Constraints
+- 
 """
 
-    # 4. Create Files
+    # Solution.py with return()
+    solution_py_content = f"""# Problem: {prob_name_raw}
+# Category: {category}
+
+class Solution:
+    def solve(self, nums):
+        # Implementation goes here
+        pass
+
+        return()
+"""
+
+    # Testsolutions.py (Lightweight version)
+    test_solution_content = """from solution import Solution
+
+def run_tests():
+    sol = Solution()
+
+    # (input_data, expected_output)
+    test_cases = [
+        ((), ()),
+        ((), ()),
+    ]
+    
+    for i, (data, expected) in enumerate(test_cases):
+        # result = sol.solve(data)
+        # print(f"Test Case {i+1}: {'✅ Pass' if result == expected else '❌ Fail'}")
+        print(f"Test Case {i+1} initialized.")
+
+if __name__ == '__main__':
+    run_tests()"""
+
+    # --- 4. Write Files ---
     files = {
         "problem.md": problem_md_content,
-        "approach.md": f"# Approach for {prob_name_raw}\n\n## 💡 Intuition\n\n## ⚙️ Algorithm\n\n## 📊 Complexity\n- Time: $O()$\n- Space: $O()$",
-        "solution.py": "class Solution:\n    def solve(self, nums):\n        pass",
-        "testsolution.py": f"import unittest\nfrom solution import Solution\n\nclass TestSolution(unittest.TestCase):\n    def test_case_1(self):\n        sol = Solution()\n        # self.assertEqual(sol.solve(), expected)\n\nif __name__ == '__main__':\n    unittest.main()"
+        "approach.md": approach_content,
+        "solution.py": solution_py_content,
+        "testsolution.py": test_solution_content
     }
 
     for filename, content in files.items():
         with open(os.path.join(folder_path, filename), "w", encoding="utf-8") as f:
             f.write(content)
     
-    # 5. Auto-Update README
-    update_readme(prob_num, prob_name_raw, diff_display, folder_path)
+    # --- 5. Update Portfolio Index ---
+    update_readme(prob_num, prob_name_raw, diff_display, topics, folder_path)
+    print(f"\n🚀 Project structure created in: {folder_path}")
 
 if __name__ == "__main__":
     create_dsa_template()

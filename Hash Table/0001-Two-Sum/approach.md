@@ -1,4 +1,6 @@
 # Approach for Two Sum
+[View Solution](solution.py)  
+[View Test File](testsolution.py)  
 
 ## 💡 Intuition
 

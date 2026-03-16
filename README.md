@@ -9,8 +9,8 @@
 ---
 
 ### 👨‍💻 About Me
-I am a Computer Science student at **GEC Lakhisarai** (BEU).
-I specialize in **Python**, **Android Development**, and solving complex problems through **DSA**.
+I am a Computer Science student at **Pre-Final Year**.
+I specialize in **Python**, **Kotlin**, **Android Development**, and solving complex problems on **Leetcode, HackerRank, CodeForces**.
 This repository serves as a technical log of my journey through competitive programming.
 
 * 🎯 **Goal:** Master Graph Algorithms & Dynamic Programming.
@@ -26,6 +26,7 @@ This repository serves as a technical log of my journey through competitive prog
 ---
 
 ### 📁 Problem Index
-| #    | Problem Name                                                       | Difficulty | Topic       | Solution                                                       |
-|------|--------------------------------------------------------------------|------------|-------------|----------------------------------------------------------------|
-| 0001 | [Two Sum](./LeetCode/0001-Two-Sum/solution.py)                     | 🟢 Easy    | Hash Table | [View Approach](./LeetCode/0001-Two-Sum/approach.md)            |
+| #    | Problem Name                                                       | Difficulty | Topic        | Solution                                                       |
+|------|--------------------------------------------------------------------|------------|--------------|----------------------------------------------------------------|
+| 0001 | [Two Sum](./Hash%20Table/0001-Two-Sum/problem.md)                     | 🟢 Easy    | `Hash Table` | [🐍 Solution](/Hash%20Table/0001-Two-Sum/approach.md)             |
+| 0009 | [Palindrome Number](/Math/0009-palindrome-number/problem.md)      | 🟢 Easy    | `Math`       | [🐍 Solution](/Math/0009-palindrome-number/approach.md)       |

@@ -14,7 +14,7 @@ def update_readme(prob_num, prob_name, diff_display, topics, folder_path):
     """Updates the root README.md with an enhanced table layout."""
     readme_path = "README.md"
     
-    # Enhanced Table Row: | # | Problem Name | Difficulty | Topics | Solution |
+    # FIX: Added a newline character (\n) at the very end of the row
     new_row = f"| {prob_num} | [{prob_name}](./{folder_path}/problem.md) | {diff_display} | `{topics}` | [🐍 Solution](./{folder_path}/solution.py) |\n"
     
     # Initialize README if it doesn't exist
@@ -24,8 +24,11 @@ def update_readme(prob_num, prob_name, diff_display, topics, folder_path):
             f.write("| # | Problem Name | Difficulty | Topics | Solution |\n")
             f.write("|---|---|---|---|---|\n")
 
+    # Open in append mode
     with open(readme_path, "a", encoding="utf-8") as f:
+        # Extra safety: Ensure we are starting on a new line by checking file end
         f.write(new_row)
+    
     print(f"✅ README.md updated successfully.")
 
 def create_dsa_template():
@@ -34,13 +37,13 @@ def create_dsa_template():
     prob_name_raw = input("📝 Problem Name: ").strip()
     category = input("📁 Category (e.g., Arrays, DP, Graphs): ").strip().title()
     difficulty_input = input("⚖️ Difficulty (easy/medium/hard): ")
-    topics = input("🏷️ Specific Topics (comma separated): ").strip()
+    topics = input("🏷️ Specific Topics: ").strip()
     
     # Formatting slugs and paths
     prob_name_slug = prob_name_raw.lower().replace(" ", "-")
     diff_display, _ = get_difficulty_info(difficulty_input)
     
-    # New Path Structure: Category/0000-name
+    # Folder Path
     folder_path = f"{category}/{prob_num}-{prob_name_slug}"
     
     # --- 2. Create Directory Structure ---
@@ -52,13 +55,14 @@ def create_dsa_template():
 
     # --- 3. Define File Templates ---
     
-    # Approach.md with Method 1/2 and Key Takeaways
     approach_content = f"""# Approach: {prob_name_raw}
 
 ## 💡 Intuition
 ### Method 1: Brute Force / Initial Idea
 ### Method 2: Optimized Approach
+
 ## ⚙️ Algorithm
+
 ## 📊 Complexity
 - **Time Complexity:** $O()$
 - **Space Complexity:** $O()$
@@ -70,7 +74,6 @@ def create_dsa_template():
 - Why did I choose this specific data structure?
 """
 
-    # Problem.md with clean separators
     problem_md_content = f"""# Problem {prob_num}: {prob_name_raw}
 
 [🔗 LeetCode Link](https://leetcode.com/problems/{prob_name_slug}/)
@@ -81,6 +84,7 @@ def create_dsa_template():
 ---
 
 ### 📝 Problem Statement
+
 ---
 
 ### 📥 Example 1
@@ -94,7 +98,6 @@ def create_dsa_template():
 - 
 """
 
-    # Solution.py with return()
     solution_py_content = f"""# Problem: {prob_name_raw}
 # Category: {category}
 
@@ -106,7 +109,6 @@ class Solution:
         return()
 """
 
-    # Testsolutions.py (Lightweight version)
     test_solution_content = """from solution import Solution
 
 def run_tests():

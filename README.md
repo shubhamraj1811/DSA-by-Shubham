@@ -9,13 +9,13 @@
 ---
 
 ### 👨‍💻 About Me
-I am a Computer Science student at **Pre-Final Year**.
+I am a Computer Science student in my **Pre-Final Year**.
 I specialize in **Python**, **Kotlin**, **Android Development**, and solving complex problems on **Leetcode, HackerRank, CodeForces**.
 This repository serves as a technical log of my journey through competitive programming.
 
 * 🎯 **Goal:** Master Graph Algorithms & Dynamic Programming.
 * 🛠️ **Tech Stack:** Python, C++, Kotlin, Android Studio.
-* 🤖 **Interest:** AI & Machine Learning.
+* 🤖 **Interest:** AI & Android.
 
 ---
 
@@ -26,7 +26,8 @@ This repository serves as a technical log of my journey through competitive prog
 ---
 
 ### 📁 Problem Index
-| #    | Problem Name                                                       | Difficulty | Topic        | Solution                                                       |
-|------|--------------------------------------------------------------------|------------|--------------|----------------------------------------------------------------|
-| 0001 | [Two Sum](./Hash%20Table/0001-Two-Sum/problem.md)                     | 🟢 Easy    | `Hash Table` | [🐍 Solution](/Hash%20Table/0001-Two-Sum/approach.md)             |
-| 0009 | [Palindrome Number](/Math/0009-palindrome-number/problem.md)      | 🟢 Easy    | `Math`       | [🐍 Solution](/Math/0009-palindrome-number/approach.md)       |
+| #    | Problem Name                                                       | Difficulty  | Topic                       | Solution                                                       |
+|------|--------------------------------------------------------------------|-------------|-----------------------------|----------------------------------------------------------------|
+| 0001 | [Two Sum](./Hash%20Table/0001-Two-Sum/problem.md)                  | 🟢 Easy     | `Hash Table`               | [🐍 Solution](/Hash%20Table/0001-Two-Sum/approach.md)          |
+| 0009 | [Palindrome Number](/Math/0009-palindrome-number/problem.md)       | 🟢 Easy     | `Math`                     | [🐍 Solution](/Math/0009-palindrome-number/approach.md)        |
+| 0013 | [Roman to Integer](/Hash%20Table/0013-roman-to-integer/problem.md) | 🟢 Easy     | `Hash Table, Math, String` | [🐍 Solution](/Hash%20Table/0013-roman-to-integer/approach.md) |
